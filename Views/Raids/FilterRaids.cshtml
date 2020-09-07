@@ -1,0 +1,25 @@
+﻿@model Raids2020.Models.Filtering.FilterRaids
+<b>Фильтр</b>
+<form asp-action="Index">
+    <div class="input-group">
+        <input class="form-control" placeholder="номер рейда" asp-for="NomerRaid" />
+        <select asp-items="@ViewBag.Terrs" class="custom-select" asp-for="TerrId">
+            <option value="0">Территория</option>
+        </select>
+        <input type="date"  asp-for="Start" />
+        <input type="date"  asp-for="Stop" />
+        <select asp-for="Sort" class="custom-select">
+            <option value="">Нет сортировки</option>
+            <option value="order">Приказ</option>
+            <option value="start">Начало</option>
+            <option value="stop">Завершение</option>
+            <option value="terr">Территория</option>
+        </select>
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-dark">Применить</button>
+        </div>
+    </div>
+    <table class="table">
+    </table>
+</form>
+

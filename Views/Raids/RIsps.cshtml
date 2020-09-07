@@ -1,0 +1,50 @@
+﻿@model List<Risp>
+
+<div class="col-md-4">
+    <h5>Исполнители</h5>
+    <table>
+        @foreach (Risp isp in Model)
+        {
+            <tr>
+                <td>
+                    @isp.Isp.Name
+                </td>
+                <td>
+                    @isp.Start
+                </td>
+                <td>
+                    @isp.Stop
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="input-group">
+        <label>Исполнитель</label>
+        <select asp-items="@ViewBag.Isp" id="AddIspId" class="custom-select">
+            <option selected>Выберите исполнителя</option>
+        </select>
+        <input type="date" id="IspStart" value="@DateTime.Today" />
+        <input type="date" id="IspStop" value="@DateTime.Today" />
+        <button id="AddIsp" class="input-group-append btn btn-dark">Добавить</button>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#AddIsp').click(function () {
+                var ispId = $("#AddIspId").val();
+                var ispStart = $("#IspStart").val();
+                var ispStop = $("#IspStop").val();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddIsp")",
+                    data: { raidId: @Model.First().RaidId, ispId: ispId, start: ispStart, stop: ispStop },
+                    success: function (msg) { alert(msg); },
+                    error: function (msg) { alert("ошибка"); }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,53 @@
+﻿@model List<Raid>
+<h2>Список рейдов</h2>
+
+
+<partial name="FilterRaids.cshtml" model="@new FilterRaids()"/>
+
+<table class="table">
+    <tr>
+        <td>
+            #
+        </td>
+        <td>
+            Приказ
+        </td>
+        <td>
+            Начало
+        </td>
+        <td>
+            Завершение
+        </td>
+        <td>
+            Территория
+        </td>
+        <td>
+
+        </td>
+    </tr>
+
+    @foreach (Raid raid in Model)
+    {
+<tr>
+    <td>
+        @raid.Nomer.ToString()
+    </td>
+    <td>
+        @raid.Prikaz.ToString()
+    </td>
+    <td>
+        @raid.Start.ToShortDateString()
+    </td>
+    <td>
+        @raid.Stop.ToShortDateString()
+    </td>
+    <td>
+        @raid.Terr?.Name
+    </td>
+    <td>
+        <a asp-controller="Raids" asp-action="GetRaid" asp-route-id="@raid.Id">Просмотр</a>
+    </td>
+</tr>
+    }
+</table>
+

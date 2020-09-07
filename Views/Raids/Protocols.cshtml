@@ -1,0 +1,26 @@
+﻿@model List<Protocol>
+
+    <div class="form-group md-div">
+        <h5>Протоколы</h5>
+        <ul>
+            @foreach (Protocol protocol in Model)
+            {
+                <li>
+                    @protocol.Name
+                    @if (protocol.FileProtocols.Count() != 0)
+                    {
+                        <h6>Файлы</h6>
+                        <ul>
+                            @foreach (FileProtocol file in protocol.FileProtocols)
+                            {
+                                <li>
+                                    @file.Name
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+

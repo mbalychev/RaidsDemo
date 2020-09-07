@@ -1,0 +1,35 @@
+﻿@model Raids2020.Models.ModelsView.ViewFiles
+<div class="form-group md-div">
+    <h5>Приказ</h5>
+    <ul>
+        @foreach (Order order in Model.Orders)
+        {
+            <li>
+                @order.Name
+            </li>
+        }
+    </ul>
+</div>
+<div class="form-group md-div">
+    <h5>Акты</h5>
+    <ul>
+        @foreach (Act act in Model.Acts)
+        {
+            <li>
+                @act.Name
+            </li>
+        }
+    </ul>
+</div>
+<div class="form-group md-div">
+    <h5>Задание</h5>
+    <ul>
+        @foreach (Raids2020.Models.Task task in Model.Tasks)
+        {
+            <li>
+                @task.Name
+            </li>
+        }
+    </ul>
+</div>
+

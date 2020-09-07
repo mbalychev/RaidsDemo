@@ -1,0 +1,57 @@
+﻿@model Raid
+
+<h4 class="md-div">Рейд</h4>
+<hr />
+
+<div class="col-md-4 md-div">
+    <form asp-action="EditRaid">
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="TerrId" type="hidden" />
+        <input asp-for="Acts" type="hidden" />
+        <input asp-for="Orders" type="hidden" />
+        <input asp-for="Tasks" type="hidden" />
+        <input asp-for="Protocols" type="hidden" />
+        <input asp-for="Risp" type="hidden" />
+
+        <div class="form-group">
+            <label asp-for="Nomer"></label>
+            <input asp-for="Nomer" class="form-control" />
+            <span asp-validation-for="Nomer" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Prikaz"></label>
+            <input asp-for="Prikaz" class="form-control" />
+            <span asp-validation-for="Prikaz" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Start"></label>
+            <input type="date" asp-for="Start" class="form-control" />
+            <span asp-validation-for="Start" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Stop"></label>
+            <input type="date" asp-for="Stop" class="form-control" />
+            <span asp-validation-for="Stop" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TerrId"></label>
+            <select asp-items="@ViewBag.Terrs" class="custom-select" asp-for="TerrId">
+            </select>
+            <span asp-validation-for="TerrId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Close"></label>
+            <input asp-for="Close" type="checkbox" class="custom-checkbox" />
+            <span asp-validation-for="Close" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-dark">Сохранить</button>
+    </form>
+</div>
+
+@await Html.PartialAsync("Files", new ViewFiles(Model))
+@await Html.PartialAsync("RIsps", Model.Risp)
+
+@if (Model.Protocols.Count() != 0)
+{
+    @await Html.PartialAsync("Protocols", Model.Protocols);
+}
